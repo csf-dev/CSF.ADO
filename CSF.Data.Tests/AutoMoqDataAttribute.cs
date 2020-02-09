@@ -1,10 +1,10 @@
 ﻿//
-// Person.cs
+// AutoMoqDataAttribute.cs
 //
 // Author:
-//       Craig Fowler <craig@craigfowler.me.uk>
+//       Craig Fowler <craig@csf-dev.com>
 //
-// Copyright (c) 2017 Craig Fowler
+// Copyright (c) 2020 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,22 +24,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using AutoFixture;
+using AutoFixture.AutoMoq;
+using AutoFixture.NUnit3;
 
-namespace Test.CSF.Data.Stubs
+namespace CSF.Data.Tests
 {
-  public class Person
+  public class AutoMoqDataAttribute : AutoDataAttribute
   {
-    public long Identity
-    {
-      get;
-      set;
-    }
-
-    public string Name
-    {
-      get;
-      set;
-    }
+    public AutoMoqDataAttribute() : base(() => new Fixture().Customize(new AutoMoqCustomization())) { }
   }
 }
-

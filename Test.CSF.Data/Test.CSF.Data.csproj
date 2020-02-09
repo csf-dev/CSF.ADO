@@ -56,26 +56,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestIDbCommandExtensions.cs" />
-    <Compile Include="TestInMemoryDataReader.cs" />
-    <Compile Include="TestInMemoryQuery.cs" />
-    <Compile Include="Stubs\Person.cs" />
-    <Compile Include="Stubs\Employee.cs" />
     <Compile Include="AutoMoqDataAttribute.cs" />
-    <Compile Include="Stubs\Animal.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\CSF.Data\CSF.Data.csproj">
-      <Project>{27BC821D-03D4-42A0-B379-F93D021E56EC}</Project>
-      <Name>CSF.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Stubs\" />
   </ItemGroup>
 </Project>
