@@ -1,4 +1,4 @@
-This repository has been **archived** and merged into **[CSF.ORM](https://github.com/csf-dev/CSF.ORM)**.  Further development on this work can be found there.
+A lot of the old functionality of this repository has been moved into **[CSF.ORM](https://github.com/csf-dev/CSF.ORM)**.  Further development on that work will be found there.
 
 *It was found that a number of repositories were so closely linked that they should be converted to a single repository, even though they are multiple separate NuGet packages.*
 
@@ -6,17 +6,6 @@ This repository has been **archived** and merged into **[CSF.ORM](https://github
 
 # CSF.Data
 These types assist in operating with data-sources.  Highlights are:
-
-## IQuery
-This is an interface which is designed to be used within applications that need access to an object-based data-source, such as an ORM.
-Essentially it is an interface for a generic repository service, which exposes a data-source via Linq.
-Firstly, this permits abstracting away from that data-source's own interfaces.
-Secondly, it solves a specific problem present in the **NHibernate** ORM, in that the `ISession.Query<T>()` method is an extension method, which is problematic to mock in unit tests.
-
-## InMemoryQuery
-This implementation of `IQuery` holds data transiently in-memory.
-It may be used as a data-source where an in-memory repository is appropriate.
-It may also be used as a test fake, for substituting a real (database-backed) query in unit tests.
 
 ## InMemoryDataReader
 This type is intended to be used as a test fake, when you wish to mock `IDataReader`.
