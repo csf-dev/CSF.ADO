@@ -1,10 +1,10 @@
 ﻿//
-// AutoMoqDataAttribute.cs
+// HasParametersAttribute.cs
 //
 // Author:
 //       Craig Fowler <craig@csf-dev.com>
 //
-// Copyright (c) 2017 Craig Fowler
+// Copyright (c) 2020 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,16 +24,48 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using Ploeh.AutoFixture;
-using Ploeh.AutoFixture.AutoMoq;
-using Ploeh.AutoFixture.NUnit3;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Reflection;
+using AutoFixture;
+using AutoFixture.NUnit3;
+using Moq;
 
-namespace Test.CSF.Data
+namespace CSF.ADO
 {
-  public class AutoMoqDataAttribute : AutoDataAttribute
+  public class HasParametersAttribute : CustomizeAttribute
   {
-    public AutoMoqDataAttribute() : base(new Fixture().Customize(new AutoMoqCustomization()))
+    public override ICustomization GetCustomization(ParameterInfo parameter)
     {
+      return new HasParametersCustomization();
+    }
+  }
+
+  public class HasParametersCustomization : ICustomization
+  {
+    public void Customize(IFixture fixture)
+    {
+      fixture.Customize<IDbCommand>(c =>
+      {
+        return c
+          .FromFactory(() => Mock.Of<IDbCommand>())
+          .Do(command =>
+          {
+            Mock.Get(command)
+              .Setup(x => x.CreateParameter())
+              .Returns(() =>
+              {
+                var param = new Mock<IDbDataParameter>();
+                param.SetupAllProperties();
+                return param.Object;
+              });
+
+            var dbParams = Mock.Of<IDataParameterCollection>();
+            Mock.Get(command).SetupGet(x => x.Parameters).Returns(dbParams);
+          });
+      });
     }
   }
 }

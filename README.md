@@ -1,15 +1,13 @@
-A lot of the old functionality of this repository has been moved into **[CSF.ORM](https://github.com/csf-dev/CSF.ORM)**.  Further development on that work will be found there.
+# CSF.ADO
+This very small repository contains two types of note:
 
-*It was found that a number of repositories were so closely linked that they should be converted to a single repository, even though they are multiple separate NuGet packages.*
+*   `InMemoryDataReader` -  intended to be used as [a test fake] for `IDataReader`.  A developer initializes it with sample data (via its constructor) and it then behaves much like any other data-reader, as if that data were exposed by a database.
+*   `DbCommandExtensions` - a tiny extension method for `IDbCommand` for the purpose of adding parameters.
 
----
+Please note that this repository has been *renamed* from `CSF.Data`.  It also used to contain other functionality *which has since been moved* to the **[CSF.ORM]** repository.
 
-# CSF.Data
-These types assist in operating with data-sources.  Highlights are:
-
-## InMemoryDataReader
-This type is intended to be used as a test fake, when you wish to mock `IDataReader`.
-It exposes a data-set which is passed into the constructor.
+[a test fake]: https://blog.pragmatists.com/test-doubles-fakes-mocks-and-stubs-1a7491dfa3da
+[CSF.ORM]: https://github.com/csf-dev/CSF.ORM
 
 ## Open source license
 All source files within this project are released as open source software,

@@ -1,5 +1,5 @@
 ﻿//
-// HasParametersAttribute.cs
+// AutoMoqDataAttribute.cs
 //
 // Author:
 //       Craig Fowler <craig@csf-dev.com>
@@ -24,48 +24,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Reflection;
 using AutoFixture;
+using AutoFixture.AutoMoq;
 using AutoFixture.NUnit3;
-using Moq;
 
-namespace CSF.Data.Tests
+namespace CSF.ADO
 {
-  public class HasParametersAttribute : CustomizeAttribute
+  public class AutoMoqDataAttribute : AutoDataAttribute
   {
-    public override ICustomization GetCustomization(ParameterInfo parameter)
-    {
-      return new HasParametersCustomization();
-    }
-  }
-
-  public class HasParametersCustomization : ICustomization
-  {
-    public void Customize(IFixture fixture)
-    {
-      fixture.Customize<IDbCommand>(c =>
-      {
-        return c
-          .FromFactory(() => Mock.Of<IDbCommand>())
-          .Do(command =>
-          {
-            Mock.Get(command)
-              .Setup(x => x.CreateParameter())
-              .Returns(() =>
-              {
-                var param = new Mock<IDbDataParameter>();
-                param.SetupAllProperties();
-                return param.Object;
-              });
-
-            var dbParams = Mock.Of<IDataParameterCollection>();
-            Mock.Get(command).SetupGet(x => x.Parameters).Returns(dbParams);
-          });
-      });
-    }
+    public AutoMoqDataAttribute() : base(() => new Fixture().Customize(new AutoMoqCustomization())) { }
   }
 }

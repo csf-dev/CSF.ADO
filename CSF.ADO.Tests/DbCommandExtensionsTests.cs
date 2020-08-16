@@ -28,7 +28,7 @@ using NUnit.Framework;
 using System.Data;
 using Moq;
 
-namespace CSF.Data.Tests
+namespace CSF.ADO
 {
   [TestFixture,Parallelizable]
   public class DbCommandExtensionsTests

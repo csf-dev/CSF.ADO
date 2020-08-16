@@ -29,7 +29,7 @@ using System.Linq;
 using System.Data;
 using System.Text;
 
-namespace CSF.Data
+namespace CSF.ADO
 {
   /// <summary>
   /// An implementation of <see cref="IDataReader"/> that makes use of a number of in-memory string arrays to provide

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.2;net451;netstandard2.0</TargetFrameworks>
+    <PackageId>CSF.ADO</PackageId>
+    <Authors>craigfowler</Authors>
+    <Description>Small utility types for ADO.NET.  An in-memory IDataReader impl &amp; an extension method for adding parameters to an IDbCommand.</Description>
+    <ReleaseVersion>2.0.0</ReleaseVersion>
+    <PackageVersion>$(ReleaseVersion)</PackageVersion>
+    <Version>$(ReleaseVersion)</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Copyright 2018 - CSF Software Limited</Copyright>
+    <PackageProjectUrl>https://github.com/csf-dev/CSF.ADO</PackageProjectUrl>
+    <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\CSF.ADO.xml</DocumentationFile>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType></DebugType>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\CSF.ADO.xml</DocumentationFile>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="System.Data.Common" Version="4.3.0" />
+  </ItemGroup>
+</Project>

@@ -1,10 +1,10 @@
-﻿//
-// AutoMoqDataAttribute.cs
+//
+// IDbCommandExtensions.cs
 //
 // Author:
 //       Craig Fowler <craig@csf-dev.com>
 //
-// Copyright (c) 2020 
+// Copyright (c) 2015 CSF Software Limited
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,15 +23,39 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
-using AutoFixture;
-using AutoFixture.AutoMoq;
-using AutoFixture.NUnit3;
 
-namespace CSF.Data.Tests
+using System;
+using System.Data;
+
+namespace CSF.ADO
 {
-  public class AutoMoqDataAttribute : AutoDataAttribute
+  /// <summary>
+  /// Extension methods for <c>IDbCommand</c> instances.
+  /// </summary>
+  public static class DbCommandExtensions
   {
-    public AutoMoqDataAttribute() : base(() => new Fixture().Customize(new AutoMoqCustomization())) { }
+    /// <summary>
+    /// Convenience extension method adds a named parameter to a <c>IDbCommand</c> instance.
+    /// </summary>
+    /// <param name='command'>
+    /// The command to which the parameter is to be added.
+    /// </param>
+    /// <param name='name'>
+    /// The name of the parameter.
+    /// </param>
+    /// <param name='value'>
+    /// The parameter's value.
+    /// </param>
+    public static void AddParameter(this IDbCommand command, string name, object value)
+    {
+      if(command == null)
+        throw new ArgumentNullException(nameof(command));
+
+      var param = command.CreateParameter();
+      param.ParameterName = name;
+      param.Value = value;
+      command.Parameters.Add(param);
+    }
   }
 }
+

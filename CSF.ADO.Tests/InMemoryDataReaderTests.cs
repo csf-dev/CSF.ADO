@@ -29,7 +29,7 @@ using System.Data;
 using System.Linq;
 using NUnit.Framework;
 
-namespace CSF.Data.Tests
+namespace CSF.ADO
 {
   [TestFixture,Parallelizable]
   public class InMemoryDataReaderTests
