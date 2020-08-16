@@ -17,6 +17,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSF.Data\CSF.Data.csproj" />
+    <ProjectReference Include="..\CSF.ADO\CSF.ADO.csproj" />
   </ItemGroup>
 </Project>
