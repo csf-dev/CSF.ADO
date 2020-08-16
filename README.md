@@ -1,10 +1,10 @@
 # CSF.ADO
 This very small repository contains two types of note:
 
-*   `InMemoryDataReader` -  intended to be used as [a test fake] for `IDataReader`.  A developer initializes it with sample data (via its constructor) and it then behaves much like any other data-reader, as if that data were exposed by a database.
-*   `DbCommandExtensions` - a tiny extension method for `IDbCommand` for the purpose of adding parameters.
+*   **InMemoryDataReader** -  intended to be used as [a test fake] for `IDataReader`.  A developer initializes it with sample data (via its constructor) and it then behaves much like any other data-reader, as if that data were exposed by a database.
+*   **DbCommandExtensions** - a tiny extension method for `IDbCommand` for the purpose of adding parameters.
 
-Please note that this repository has been *renamed* from `CSF.Data`.  It also used to contain other functionality *which has since been moved* to the **[CSF.ORM]** repository.
+Please note that _this repository has been **renamed**_ from `CSF.Data`.  It also used to contain other functionality *which has since been moved* to the **[CSF.ORM]** repository.
 
 [a test fake]: https://blog.pragmatists.com/test-doubles-fakes-mocks-and-stubs-1a7491dfa3da
 [CSF.ORM]: https://github.com/csf-dev/CSF.ORM
