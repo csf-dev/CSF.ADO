@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.CSF.Data", "Test.CSF.Data\Test.CSF.Data.csproj", "{11DCF35A-6E2A-4C62-B536-14B83FF5AE07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.ADO", "CSF.ADO\CSF.ADO.csproj", "{11299924-AF21-4A69-A87D-11F6377BE39C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.Data", "CSF.Data\CSF.Data.csproj", "{27BC821D-03D4-42A0-B379-F93D021E56EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.ADO.Tests", "CSF.ADO.Tests\CSF.ADO.Tests.csproj", "{B8952C00-B47D-43C1-A8F7-7C5915B36F3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{11DCF35A-6E2A-4C62-B536-14B83FF5AE07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{11DCF35A-6E2A-4C62-B536-14B83FF5AE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{11DCF35A-6E2A-4C62-B536-14B83FF5AE07}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{11DCF35A-6E2A-4C62-B536-14B83FF5AE07}.Release|Any CPU.Build.0 = Release|Any CPU
-		{27BC821D-03D4-42A0-B379-F93D021E56EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27BC821D-03D4-42A0-B379-F93D021E56EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27BC821D-03D4-42A0-B379-F93D021E56EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27BC821D-03D4-42A0-B379-F93D021E56EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11299924-AF21-4A69-A87D-11F6377BE39C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11299924-AF21-4A69-A87D-11F6377BE39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11299924-AF21-4A69-A87D-11F6377BE39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11299924-AF21-4A69-A87D-11F6377BE39C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8952C00-B47D-43C1-A8F7-7C5915B36F3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8952C00-B47D-43C1-A8F7-7C5915B36F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8952C00-B47D-43C1-A8F7-7C5915B36F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8952C00-B47D-43C1-A8F7-7C5915B36F3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
@@ -157,6 +157,6 @@ Global
 		$25.NamingStyle = PascalCase
 		$25.IncludeInstanceMembers = True
 		$25.IncludeStaticEntities = True
-		version = 1.3.1
+		version = 2.0.0
 	EndGlobalSection
 EndGlobal

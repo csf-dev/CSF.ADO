@@ -28,12 +28,11 @@ using System;
 using System.Data;
 using System.Linq;
 using NUnit.Framework;
-using CSF.Data;
 
-namespace Test.CSF.Data
+namespace CSF.ADO
 {
   [TestFixture,Parallelizable]
-  public class TestInMemoryDataReader
+  public class InMemoryDataReaderTests
   {
     #region fields
 

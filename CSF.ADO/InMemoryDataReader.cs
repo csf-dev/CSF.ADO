@@ -25,12 +25,11 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using System.Text;
 
-namespace CSF.Data
+namespace CSF.ADO
 {
   /// <summary>
   /// An implementation of <see cref="IDataReader"/> that makes use of a number of in-memory string arrays to provide
@@ -548,13 +547,13 @@ namespace CSF.Data
     }
 
     /// <summary>
-    /// Releases all resource used by the <see cref="CSF.Data.InMemoryDataReader"/> object.
+    /// Releases all resource used by the <see cref="InMemoryDataReader"/> object.
     /// </summary>
     /// <remarks>
-    /// Call <see cref="Dispose"/> when you are finished using the <see cref="CSF.Data.InMemoryDataReader"/>. The
-    /// <see cref="Dispose"/> method leaves the <see cref="CSF.Data.InMemoryDataReader"/> in an unusable state. After
-    /// calling <see cref="Dispose"/>, you must release all references to the <see cref="CSF.Data.InMemoryDataReader"/>
-    /// so the garbage collector can reclaim the memory that the <see cref="CSF.Data.InMemoryDataReader"/> was occupying.
+    /// Call <see cref="Dispose"/> when you are finished using the <see cref="InMemoryDataReader"/>. The
+    /// <see cref="Dispose"/> method leaves the <see cref="InMemoryDataReader"/> in an unusable state. After
+    /// calling <see cref="Dispose"/>, you must release all references to the <see cref="InMemoryDataReader"/>
+    /// so the garbage collector can reclaim the memory that the <see cref="InMemoryDataReader"/> was occupying.
     /// </remarks>
     public virtual void Dispose ()
     {
@@ -897,7 +896,7 @@ namespace CSF.Data
     #region constructor
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="CSF.Data.InMemoryDataReader"/> class.
+    /// Initializes a new instance of the <see cref="InMemoryDataReader"/> class.
     /// </summary>
     /// <param name='firstRowsAsHeaders'>
     /// If <c>true</c> then the first row of every data source provided is treated as containing header information.

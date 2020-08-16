@@ -1,20 +1,13 @@
-# CSF.Data
-These types assist in operating with data-sources.  Highlights are:
+# CSF.ADO
+This very small repository contains two types of note:
 
-## IQuery
-This is an interface which is designed to be used within applications that need access to an object-based data-source, such as an ORM.
-Essentially it is an interface for a generic repository service, which exposes a data-source via Linq.
-Firstly, this permits abstracting away from that data-source's own interfaces.
-Secondly, it solves a specific problem present in the **NHibernate** ORM, in that the `ISession.Query<T>()` method is an extension method, which is problematic to mock in unit tests.
+*   **InMemoryDataReader** -  intended to be used as [a test fake] for `IDataReader`.  A developer initializes it with sample data (via its constructor) and it then behaves much like any other data-reader, as if that data were exposed by a database.
+*   **DbCommandExtensions** - a tiny extension method for `IDbCommand` for the purpose of adding parameters.
 
-## InMemoryQuery
-This implementation of `IQuery` holds data transiently in-memory.
-It may be used as a data-source where an in-memory repository is appropriate.
-It may also be used as a test fake, for substituting a real (database-backed) query in unit tests.
+Please note that _this repository has been **renamed**_ from `CSF.Data`.  It also used to contain other functionality *which has since been moved* to the **[CSF.ORM]** repository.
 
-## InMemoryDataReader
-This type is intended to be used as a test fake, when you wish to mock `IDataReader`.
-It exposes a data-set which is passed into the constructor.
+[a test fake]: https://blog.pragmatists.com/test-doubles-fakes-mocks-and-stubs-1a7491dfa3da
+[CSF.ORM]: https://github.com/csf-dev/CSF.ORM
 
 ## Open source license
 All source files within this project are released as open source software,

@@ -1,5 +1,5 @@
 //
-// IDbCommandExtensions.cs
+// TestIDbCommandExtensions.cs
 //
 // Author:
 //       Craig Fowler <craig@csf-dev.com>
@@ -24,39 +24,34 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
+using NUnit.Framework;
 using System.Data;
+using Moq;
 
-namespace CSF.Data
+namespace CSF.ADO
 {
-  /// <summary>
-  /// Extension methods for <c>IDbCommand</c> instances.
-  /// </summary>
-  public static class IDbCommandExtensions
+  [TestFixture,Parallelizable]
+  public class DbCommandExtensionsTests
   {
-    /// <summary>
-    /// Convenience extension method adds a named parameter to a <c>IDbCommand</c> instance.
-    /// </summary>
-    /// <param name='command'>
-    /// The command to which the parameter is to be added.
-    /// </param>
-    /// <param name='name'>
-    /// The name of the parameter.
-    /// </param>
-    /// <param name='value'>
-    /// The parameter's value.
-    /// </param>
-    public static void AddParameter(this IDbCommand command, string name, object value)
+    [Test,AutoMoqData]
+    public void AddParameter_adds_new_parameter_to_command_with_correct_values([HasParameters] IDbCommand command,
+                                                                               string name,
+                                                                               string val)
     {
-      if(command == null)
-      {
-        throw new ArgumentNullException("command");
-      }
+      command.AddParameter(name, val);
 
-      var param = command.CreateParameter();
-      param.ParameterName = name;
-      param.Value = value;
-      command.Parameters.Add(param);
+      Mock.Get(command.Parameters)
+        .Verify(x => x.Add(It.Is<IDbDataParameter>(p => p.ParameterName == name && (string) p.Value == val)), Times.Once);
+    }
+
+    [Test, AutoMoqData]
+    public void AddParameter_uses_command_to_create_parameter([HasParameters] IDbCommand command,
+                                                              string name,
+                                                              string val)
+    {
+      command.AddParameter(name, val);
+
+      Mock.Get(command).Verify(x => x.CreateParameter(), Times.Once);
     }
   }
 }

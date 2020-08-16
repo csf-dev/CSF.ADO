@@ -1,10 +1,10 @@
 ﻿//
-// NoOpTransactionCreator.cs
+// HasParametersAttribute.cs
 //
 // Author:
 //       Craig Fowler <craig@csf-dev.com>
 //
-// Copyright (c) 2017 Craig Fowler
+// Copyright (c) 2020 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,31 +24,48 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-namespace CSF.Data
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Reflection;
+using AutoFixture;
+using AutoFixture.NUnit3;
+using Moq;
+
+namespace CSF.ADO
 {
-  /// <summary>
-  /// A no-operation dummy/fake transaction creator.
-  /// </summary>
-  public class NoOpTransactionCreator : ITransactionCreator
+  public class HasParametersAttribute : CustomizeAttribute
   {
-    bool throwOnRollback;
-
-    /// <summary>
-    /// Begins the transaction.
-    /// </summary>
-    /// <returns>The transaction.</returns>
-    public ITransaction BeginTransaction()
+    public override ICustomization GetCustomization(ParameterInfo parameter)
     {
-      return new NoOpTransaction(throwOnRollback);
+      return new HasParametersCustomization();
     }
+  }
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="T:CSF.Data.NoOpTransactionCreator"/> class.
-    /// </summary>
-    /// <param name="throwOnRollback">If set to <c>true</c> throw on rollback.</param>
-    public NoOpTransactionCreator(bool throwOnRollback = false)
+  public class HasParametersCustomization : ICustomization
+  {
+    public void Customize(IFixture fixture)
     {
-      this.throwOnRollback = throwOnRollback;
+      fixture.Customize<IDbCommand>(c =>
+      {
+        return c
+          .FromFactory(() => Mock.Of<IDbCommand>())
+          .Do(command =>
+          {
+            Mock.Get(command)
+              .Setup(x => x.CreateParameter())
+              .Returns(() =>
+              {
+                var param = new Mock<IDbDataParameter>();
+                param.SetupAllProperties();
+                return param.Object;
+              });
+
+            var dbParams = Mock.Of<IDataParameterCollection>();
+            Mock.Get(command).SetupGet(x => x.Parameters).Returns(dbParams);
+          });
+      });
     }
   }
 }
