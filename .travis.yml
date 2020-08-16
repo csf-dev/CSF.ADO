@@ -1,10 +1,8 @@
-language: csharp
 solution: CSF.ADO.sln
 
-jobs:
-    include:
-        -   dotnet: 2.2.207
-            mono: latest
+language: csharp
+mono: none
+dotnet: 2.2.207
 
 script:
     -   dotnet build
