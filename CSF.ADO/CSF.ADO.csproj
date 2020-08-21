@@ -5,7 +5,7 @@
     <PackageId>CSF.ADO</PackageId>
     <Authors>craigfowler</Authors>
     <Description>Small utility types for ADO.NET.  An in-memory IDataReader impl &amp; an extension method for adding parameters to an IDbCommand.</Description>
-    <ReleaseVersion>2.0.0</ReleaseVersion>
+    <ReleaseVersion>2.0.1</ReleaseVersion>
     <PackageVersion>$(ReleaseVersion)</PackageVersion>
     <Version>$(ReleaseVersion)</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -27,6 +27,6 @@
   
   <ItemGroup>
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" Condition="'$(TargetFramework)' == 'net451'" />
   </ItemGroup>
 </Project>
